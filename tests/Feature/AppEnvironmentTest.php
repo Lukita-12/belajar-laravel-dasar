@@ -20,6 +20,5 @@ class AppEnvironmentTest extends TestCase
             //kode program kita
             self::assertTrue(true);
         }
-        var_dump(App::environmet());
     }
 }
