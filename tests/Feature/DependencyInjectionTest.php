@@ -12,7 +12,11 @@ class DependencyInjectionTest extends TestCase {
         $foo=new Foo();
 
         //Constractor
-        $bar=new Bar($foo); //Wajib memasukan data "Foo", karena melakukan Injection dari data "Foo" ke dalam "Bar"
+        $bar=new Bar($foo);
+        //Vaiabel bar menggunakan data dari varibel foo
+        //Wajib memasukan data "Foo", karena melakukan Injection dari data "Foo" ke dalam "Bar"
+
+
         //Function
         //        $bar->setFoo($foo);
         //Atrribute

@@ -9,11 +9,6 @@ use Tests\TestCase;
 
 class AppEnvironmentTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
     public function testAppEnv()
     {
         if(App::environment(['testing', 'prod', 'dev'])){
