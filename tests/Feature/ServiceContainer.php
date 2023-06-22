@@ -2,7 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Data\Bar;
 use App\Data\Foo;
+use App\Data\Person;
+use App\Services\HalloService;
+use App\Services\HalloServiceIndonesia;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -36,8 +41,8 @@ class ServiceContainer extends TestCase
         $person1 = $this->app->make(Person::class); //closure() //new Person("Yapet", "Lukita");
         $person2 = $this->app->make(Person::class); //closure() //new Person("Yapet", "Lukita");
 
-        self::assertEquals('Yapet', $person1->firstName());
-        self::assertEquals('Yapet', $person2->firstName());
+        self::assertEquals('Yapet', $person1->firstName);
+        self::assertEquals('Yapet', $person2->firstName);
         self::assertNotSame($person1, $person2);
     }
 
@@ -53,23 +58,23 @@ class ServiceContainer extends TestCase
         $person3 = $this->app->make(Person::class); //return existing
         $person4 = $this->app->make(Person::class); //return existing
 
-        self::assertEquals('Yapet', $person1->firstName());
-        self::assertEquals('Yapet', $person2->firstName());
+        self::assertEquals('Yapet', $person1->firstName);
+        self::assertEquals('Yapet', $person2->firstName);
         self::assertSame($person1, $person2); //ganti menjadi assertSame karena person1 dan 2 merupakan objct yang sama
     }
 
     public function testInstance()
     {
         $person = new Person("Yapet", "Lukita");
-        $this->app->instanace(Person::class, $person);
+        $this->app->instance(Person::class, $person);
 
         $person1 = $this->app->make(Person::class); //new Person("Yapet", "Lukita"); if not exists 
         $person2 = $this->app->make(Person::class); //return existing
         $person3 = $this->app->make(Person::class); //return existing
         $person4 = $this->app->make(Person::class); //return existing
 
-        self::assertEquals('Yapet', $person1->firstName());
-        self::assertEquals('Yapet', $person2->firstName());
+        self::assertEquals('Yapet', $person1->firstName);
+        self::assertEquals('Yapet', $person2->firstName);
         self::assertSame($person1, $person2); //ganti menjadi assertSame karena person1 dan 2 merupakan objct yang sama
     }
 
@@ -83,7 +88,7 @@ class ServiceContainer extends TestCase
         $foo = $this->app->make(Foo::class);
         $bar = $this->app->make(Bar::class);
 
-        self::assertSame($foo, $bar);
+        self::assertNotSame($foo, $bar);
     }
 
     public function testDependencyInjectionClosure()
@@ -96,14 +101,14 @@ class ServiceContainer extends TestCase
         $this->app->singleton(Bar::class, function ($app)
         {
             $foo = $app->make(Foo::class);
-            return new Bar();
+            return new Bar($app->make(Foo::class));
         });
 
         $foo = $this->app->make(Foo::class);
         $bar1 = $this->app->make(Bar::class);
         $bar2 = $this->app->make(Bar::class);
         
-        self::assertSame($foo, $bar);
+        self::assertNotSame($foo, $bar1);
         self::assertSame($bar1, $bar2);
     }
 
@@ -116,7 +121,7 @@ class ServiceContainer extends TestCase
             return new HalloServiceIndonesia();
         });
 
-        $this->app->make(HalloService::class);
+        $halloService = $this->app->make(HalloService::class);
 
         self::assertEquals('Halo Yapet', $halloService->hallo('Yapet'));
     }

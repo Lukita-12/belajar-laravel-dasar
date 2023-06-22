@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-class HalloServiceIndonesia implements HalloServiceIndonesia
+class HalloServiceIndonesia implements HalloService
 {
     public function hallo(string $name): string
     {
