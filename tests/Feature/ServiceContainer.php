@@ -53,7 +53,7 @@ class ServiceContainer extends TestCase
             return new Person("Yapet", "Lukita");
         });
 
-        $person1 = $this->app->make(Person::class); //new Person("Yapet", "Lukita"); if not exists 
+        $person1 = $this->app->make(Person::class); //new Person("Yapet", "Lukita"); if not exists //Instansiasi dilakukan disini
         $person2 = $this->app->make(Person::class); //return existing
         $person3 = $this->app->make(Person::class); //return existing
         $person4 = $this->app->make(Person::class); //return existing
@@ -65,13 +65,13 @@ class ServiceContainer extends TestCase
 
     public function testInstance()
     {
-        $person = new Person("Yapet", "Lukita");
+        $person = new Person("Yapet", "Lukita");  //Instansiasi dilakukan di sini
         $this->app->instance(Person::class, $person);
 
         $person1 = $this->app->make(Person::class); //new Person("Yapet", "Lukita"); if not exists 
-        $person2 = $this->app->make(Person::class); //return existing
-        $person3 = $this->app->make(Person::class); //return existing
-        $person4 = $this->app->make(Person::class); //return existing
+        $person2 = $this->app->make(Person::class); //$person
+        $person3 = $this->app->make(Person::class); //$person
+        $person4 = $this->app->make(Person::class); //$person
 
         self::assertEquals('Yapet', $person1->firstName);
         self::assertEquals('Yapet', $person2->firstName);

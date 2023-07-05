@@ -170,12 +170,17 @@ return [
 
         /*
          * Application Service Providers...
+         * 
+         * Provider yang ada di aplikasi kita, dan tinggal kita tambahkan provider yang baru kita buat
+         * Karena Service Provider tidak dibuat otomais kita perlu menambahkannya secara manual.
+         * 
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\FooBarServiceProvider::class,        //ServiceProvider yang baru dibuat
 
     ],
 

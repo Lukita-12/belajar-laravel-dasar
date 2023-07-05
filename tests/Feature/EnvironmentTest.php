@@ -8,17 +8,19 @@ use Tests\TestCase;
 
 class EnvironmentTest extends TestCase
 {
-    public function test_example()
+    public function testGetEnv()
     {
-        $youtube = env("YOUTUBE");
+        $youtube = env('YOUTUBE');
 
-        self::assertEquals("Programmer Zaman Now", $youtube);
+        self::assertEquals('Lukita Yapet', $youtube);
     }
 
+    /*
     public function testDefaultEnv()
     {
         $author = env("AUTHOR", "Yapet");
 
         self::assertEquals('Yapet', $author);
     }
+    */
 }
