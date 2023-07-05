@@ -180,7 +180,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\FooBarServiceProvider::class,        //ServiceProvider yang baru dibuat
+        // App\Providers\FooBarServiceProvider::class,
+        App\Providers\FooBarServiceProvider::class        //ServiceProvider yang baru dibuat
 
     ],
 

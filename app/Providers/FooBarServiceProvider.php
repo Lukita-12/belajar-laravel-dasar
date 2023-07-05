@@ -4,12 +4,9 @@ namespace App\Providers;
 
 use App\Data\Bar;
 use App\Data\Foo;
-use App\Services\HalloService;
-use App\Services\HalloServiceIndonesia;
-use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class FooBarServiceProvider extends ServiceProvider implements DeferrableProvider //implements DeferrebleProvider (untuk menambah Deferrable Provider) dan dapat offride methode "provide"
+class FooBarServiceProvider extends ServiceProvider //implements DeferrableProvider //implements DeferrebleProvider (untuk menambah Deferrable Provider) dan dapat offride methode "provide"
 {
     // public array $singletons = [
     //     HalloService::class => HalloServiceIndonesia::class
@@ -17,7 +14,7 @@ class FooBarServiceProvider extends ServiceProvider implements DeferrableProvide
 
     public function register()  //men-register Foo dan Bar sebagai singleton 
     {
-        // echo "FooBarServiceProvider";
+        var_dump("FooBarServiceProvider");
         $this->app->singleton(Foo::class, function ($app) {
             return new Foo();
         });

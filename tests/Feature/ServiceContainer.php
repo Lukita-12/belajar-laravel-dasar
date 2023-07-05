@@ -85,7 +85,7 @@ class ServiceContainer extends TestCase
             return new Foo();
         });
 
-        $foo = $this->app->make(Foo::class);
+        $foo = $this->app->make(Foo::class); //
         $bar = $this->app->make(Bar::class);
 
         self::assertNotSame($foo, $bar);
